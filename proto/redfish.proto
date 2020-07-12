@@ -1,0 +1,53 @@
+syntax = "proto3";
+package proto;
+
+message Firmware {
+    string name =1;
+    string version = 2;
+    string url = 3
+}
+
+message PhysicalDisk {
+    string virtualDiskId = 1;
+    string physicalDisk = 2;
+}
+
+message VirtualDisk {
+    string diskname = 1;
+    uint32 raidType =2; 
+    string raidController = 3;
+    repeated PhysicalDisk = 4 
+}
+
+message Node {
+    string IPMIIP = 1;
+    string IPMIUsername = 2;
+    string IPMIPassword = 3; 
+    Anyof {
+      virtualDisk repeated
+      Firmware repeated
+      string isoURL 
+}
+  
+}
+
+message Empty {}
+
+message Response {
+    bytes value = 1;
+
+}
+
+service bmh {
+  rpc Deploy(Empty) returns (Response)
+  rpc UpdateFirmware(Empty) returns (Response)
+  rpc ConfigureRAID(Empty) returns (Response)
+
+}
+
+service isogen {
+  rpc CreateISO(Empty) returns (Response);
+}
+service redfish {
+  rpc GetGUIID(Empty) returns (Response);
+}
