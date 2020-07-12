@@ -7,7 +7,6 @@ import (
 
 	resty "github.com/go-resty/resty/v2"
 	"github.com/pkg/errors"
-	//"net/http"
 )
 
 const ilo4VirtualMediaAction string = "/VirtualMedia/2/Actions/Oem/Hp/HpiLOVirtualMedia."

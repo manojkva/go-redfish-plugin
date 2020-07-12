@@ -1,8 +1,8 @@
 package redfish
 
 import (
-	config "bitbucket.com/metamorph/pkg/config"
-	"bitbucket.com/metamorph/pkg/db/models/node"
+	config "github.com/Metamorph/pkg/config"
+	"github.com/Metamorph/pkg/db/models/node"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

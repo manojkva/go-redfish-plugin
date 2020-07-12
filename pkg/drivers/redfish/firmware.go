@@ -6,8 +6,8 @@ import (
 	"os"
 	"path"
 
-	"bitbucket.com/metamorph/pkg/db/models/node"
-	"bitbucket.com/metamorph/pkg/util/isogen"
+	"github.com/Metamorph/pkg/db/models/node"
+	"github.com/manojkva/go-redfish-plugin/pkg/isogen"
 	version "github.com/hashicorp/go-version"
 )
 

@@ -1,7 +1,7 @@
 package redfish
 
 import (
-	"bitbucket.com/metamorph/pkg/db/models/node"
+	"github.com/Metamorph/pkg/db/models/node"
 	"fmt"
 	client "github.com/manojkva/go-redfish-api-wrapper/pkg/redfishwrap/idrac"
 )

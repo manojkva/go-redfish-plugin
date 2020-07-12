@@ -7,21 +7,17 @@ import (
 	"os/exec"
 	"strconv"
 
-	// "gopkg.in/yaml.v2"
-	//"strings"
 	"crypto/md5"
 	"io"
 	"io/ioutil"
 
-	//"html/template"
 	"path"
 	"strings"
 
-	config "bitbucket.com/metamorph/pkg/config"
-	"bitbucket.com/metamorph/pkg/db/models/node"
-	"bitbucket.com/metamorph/pkg/logger"
+	config "github.com/Metamorph/pkg/config"
+	"github.com/Metamorph/pkg/db/models/node"
+	"github.com/Metamorph/pkg/logger"
 	"go.uber.org/zap"
-	//"google.golang.org/protobuf/internal/errors"
 )
 
 func CreateDirectory(directoryPath string) error {
