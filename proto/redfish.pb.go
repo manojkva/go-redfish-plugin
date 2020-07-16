@@ -29,6 +29,407 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+type Firmware struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name    string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Version string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	Url     string `protobuf:"bytes,3,opt,name=url,proto3" json:"url,omitempty"`
+}
+
+func (x *Firmware) Reset() {
+	*x = Firmware{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_redfish_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Firmware) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Firmware) ProtoMessage() {}
+
+func (x *Firmware) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_redfish_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Firmware.ProtoReflect.Descriptor instead.
+func (*Firmware) Descriptor() ([]byte, []int) {
+	return file_proto_redfish_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Firmware) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Firmware) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+func (x *Firmware) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+type PhysicalDisk struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	VirtualDiskId string `protobuf:"bytes,1,opt,name=virtualDiskId,proto3" json:"virtualDiskId,omitempty"`
+	PhysicalDisk  string `protobuf:"bytes,2,opt,name=physicalDisk,proto3" json:"physicalDisk,omitempty"`
+}
+
+func (x *PhysicalDisk) Reset() {
+	*x = PhysicalDisk{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_redfish_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PhysicalDisk) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PhysicalDisk) ProtoMessage() {}
+
+func (x *PhysicalDisk) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_redfish_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PhysicalDisk.ProtoReflect.Descriptor instead.
+func (*PhysicalDisk) Descriptor() ([]byte, []int) {
+	return file_proto_redfish_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *PhysicalDisk) GetVirtualDiskId() string {
+	if x != nil {
+		return x.VirtualDiskId
+	}
+	return ""
+}
+
+func (x *PhysicalDisk) GetPhysicalDisk() string {
+	if x != nil {
+		return x.PhysicalDisk
+	}
+	return ""
+}
+
+type VirtualDisk struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Diskname       string          `protobuf:"bytes,1,opt,name=diskname,proto3" json:"diskname,omitempty"`
+	RaidType       uint32          `protobuf:"varint,2,opt,name=raidType,proto3" json:"raidType,omitempty"`
+	RaidController string          `protobuf:"bytes,3,opt,name=raidController,proto3" json:"raidController,omitempty"`
+	PhysicalDisk   []*PhysicalDisk `protobuf:"bytes,4,rep,name=physicalDisk,proto3" json:"physicalDisk,omitempty"`
+}
+
+func (x *VirtualDisk) Reset() {
+	*x = VirtualDisk{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_redfish_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *VirtualDisk) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VirtualDisk) ProtoMessage() {}
+
+func (x *VirtualDisk) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_redfish_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VirtualDisk.ProtoReflect.Descriptor instead.
+func (*VirtualDisk) Descriptor() ([]byte, []int) {
+	return file_proto_redfish_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *VirtualDisk) GetDiskname() string {
+	if x != nil {
+		return x.Diskname
+	}
+	return ""
+}
+
+func (x *VirtualDisk) GetRaidType() uint32 {
+	if x != nil {
+		return x.RaidType
+	}
+	return 0
+}
+
+func (x *VirtualDisk) GetRaidController() string {
+	if x != nil {
+		return x.RaidController
+	}
+	return ""
+}
+
+func (x *VirtualDisk) GetPhysicalDisk() []*PhysicalDisk {
+	if x != nil {
+		return x.PhysicalDisk
+	}
+	return nil
+}
+
+type VirtualDisks struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	VirtualDisk []*VirtualDisk `protobuf:"bytes,1,rep,name=virtualDisk,proto3" json:"virtualDisk,omitempty"`
+}
+
+func (x *VirtualDisks) Reset() {
+	*x = VirtualDisks{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_redfish_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *VirtualDisks) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VirtualDisks) ProtoMessage() {}
+
+func (x *VirtualDisks) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_redfish_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VirtualDisks.ProtoReflect.Descriptor instead.
+func (*VirtualDisks) Descriptor() ([]byte, []int) {
+	return file_proto_redfish_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *VirtualDisks) GetVirtualDisk() []*VirtualDisk {
+	if x != nil {
+		return x.VirtualDisk
+	}
+	return nil
+}
+
+type Firmwares struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Firmware []*Firmware `protobuf:"bytes,1,rep,name=firmware,proto3" json:"firmware,omitempty"`
+}
+
+func (x *Firmwares) Reset() {
+	*x = Firmwares{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_redfish_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Firmwares) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Firmwares) ProtoMessage() {}
+
+func (x *Firmwares) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_redfish_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Firmwares.ProtoReflect.Descriptor instead.
+func (*Firmwares) Descriptor() ([]byte, []int) {
+	return file_proto_redfish_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *Firmwares) GetFirmware() []*Firmware {
+	if x != nil {
+		return x.Firmware
+	}
+	return nil
+}
+
+type Node struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IPMIIP       string `protobuf:"bytes,1,opt,name=IPMIIP,proto3" json:"IPMIIP,omitempty"`
+	IPMIUsername string `protobuf:"bytes,2,opt,name=IPMIUsername,proto3" json:"IPMIUsername,omitempty"`
+	IPMIPassword string `protobuf:"bytes,3,opt,name=IPMIPassword,proto3" json:"IPMIPassword,omitempty"`
+	// Types that are assignable to Modules:
+	//	*Node_VirtualDisks
+	//	*Node_Firmwares
+	//	*Node_IsoURL
+	Modules isNode_Modules `protobuf_oneof:"modules"`
+}
+
+func (x *Node) Reset() {
+	*x = Node{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_redfish_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Node) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Node) ProtoMessage() {}
+
+func (x *Node) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_redfish_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Node.ProtoReflect.Descriptor instead.
+func (*Node) Descriptor() ([]byte, []int) {
+	return file_proto_redfish_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Node) GetIPMIIP() string {
+	if x != nil {
+		return x.IPMIIP
+	}
+	return ""
+}
+
+func (x *Node) GetIPMIUsername() string {
+	if x != nil {
+		return x.IPMIUsername
+	}
+	return ""
+}
+
+func (x *Node) GetIPMIPassword() string {
+	if x != nil {
+		return x.IPMIPassword
+	}
+	return ""
+}
+
+func (m *Node) GetModules() isNode_Modules {
+	if m != nil {
+		return m.Modules
+	}
+	return nil
+}
+
+func (x *Node) GetVirtualDisks() *VirtualDisks {
+	if x, ok := x.GetModules().(*Node_VirtualDisks); ok {
+		return x.VirtualDisks
+	}
+	return nil
+}
+
+func (x *Node) GetFirmwares() *Firmwares {
+	if x, ok := x.GetModules().(*Node_Firmwares); ok {
+		return x.Firmwares
+	}
+	return nil
+}
+
+func (x *Node) GetIsoURL() string {
+	if x, ok := x.GetModules().(*Node_IsoURL); ok {
+		return x.IsoURL
+	}
+	return ""
+}
+
+type isNode_Modules interface {
+	isNode_Modules()
+}
+
+type Node_VirtualDisks struct {
+	VirtualDisks *VirtualDisks `protobuf:"bytes,4,opt,name=virtualDisks,proto3,oneof"`
+}
+
+type Node_Firmwares struct {
+	Firmwares *Firmwares `protobuf:"bytes,5,opt,name=firmwares,proto3,oneof"`
+}
+
+type Node_IsoURL struct {
+	IsoURL string `protobuf:"bytes,6,opt,name=isoURL,proto3,oneof"`
+}
+
+func (*Node_VirtualDisks) isNode_Modules() {}
+
+func (*Node_Firmwares) isNode_Modules() {}
+
+func (*Node_IsoURL) isNode_Modules() {}
+
 type Empty struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -38,7 +439,7 @@ type Empty struct {
 func (x *Empty) Reset() {
 	*x = Empty{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_redfish_proto_msgTypes[0]
+		mi := &file_proto_redfish_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -51,7 +452,7 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_redfish_proto_msgTypes[0]
+	mi := &file_proto_redfish_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -64,7 +465,7 @@ func (x *Empty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Empty.ProtoReflect.Descriptor instead.
 func (*Empty) Descriptor() ([]byte, []int) {
-	return file_proto_redfish_proto_rawDescGZIP(), []int{0}
+	return file_proto_redfish_proto_rawDescGZIP(), []int{6}
 }
 
 type Response struct {
@@ -78,7 +479,7 @@ type Response struct {
 func (x *Response) Reset() {
 	*x = Response{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_redfish_proto_msgTypes[1]
+		mi := &file_proto_redfish_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -91,7 +492,7 @@ func (x *Response) String() string {
 func (*Response) ProtoMessage() {}
 
 func (x *Response) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_redfish_proto_msgTypes[1]
+	mi := &file_proto_redfish_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -104,7 +505,7 @@ func (x *Response) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Response.ProtoReflect.Descriptor instead.
 func (*Response) Descriptor() ([]byte, []int) {
-	return file_proto_redfish_proto_rawDescGZIP(), []int{1}
+	return file_proto_redfish_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *Response) GetValue() []byte {
@@ -118,14 +519,71 @@ var File_proto_redfish_proto protoreflect.FileDescriptor
 
 var file_proto_redfish_proto_rawDesc = []byte{
 	0x0a, 0x13, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x72, 0x65, 0x64, 0x66, 0x69, 0x73, 0x68, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x07, 0x0a, 0x05,
-	0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x20, 0x0a, 0x08, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c,
-	0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x32, 0x34, 0x0a, 0x07, 0x72, 0x65, 0x64, 0x66, 0x69,
-	0x73, 0x68, 0x12, 0x29, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x47, 0x55, 0x49, 0x49, 0x44, 0x12, 0x0c,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0f, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x4a, 0x0a, 0x08,
+	0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x18, 0x0a, 0x07,
+	0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76,
+	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x22, 0x58, 0x0a, 0x0c, 0x50, 0x68, 0x79, 0x73,
+	0x69, 0x63, 0x61, 0x6c, 0x44, 0x69, 0x73, 0x6b, 0x12, 0x24, 0x0a, 0x0d, 0x76, 0x69, 0x72, 0x74,
+	0x75, 0x61, 0x6c, 0x44, 0x69, 0x73, 0x6b, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0d, 0x76, 0x69, 0x72, 0x74, 0x75, 0x61, 0x6c, 0x44, 0x69, 0x73, 0x6b, 0x49, 0x64, 0x12, 0x22,
+	0x0a, 0x0c, 0x70, 0x68, 0x79, 0x73, 0x69, 0x63, 0x61, 0x6c, 0x44, 0x69, 0x73, 0x6b, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x70, 0x68, 0x79, 0x73, 0x69, 0x63, 0x61, 0x6c, 0x44, 0x69,
+	0x73, 0x6b, 0x22, 0xa6, 0x01, 0x0a, 0x0b, 0x56, 0x69, 0x72, 0x74, 0x75, 0x61, 0x6c, 0x44, 0x69,
+	0x73, 0x6b, 0x12, 0x1a, 0x0a, 0x08, 0x64, 0x69, 0x73, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x69, 0x73, 0x6b, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1a,
+	0x0a, 0x08, 0x72, 0x61, 0x69, 0x64, 0x54, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d,
+	0x52, 0x08, 0x72, 0x61, 0x69, 0x64, 0x54, 0x79, 0x70, 0x65, 0x12, 0x26, 0x0a, 0x0e, 0x72, 0x61,
+	0x69, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0e, 0x72, 0x61, 0x69, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c,
+	0x65, 0x72, 0x12, 0x37, 0x0a, 0x0c, 0x70, 0x68, 0x79, 0x73, 0x69, 0x63, 0x61, 0x6c, 0x44, 0x69,
+	0x73, 0x6b, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x2e, 0x50, 0x68, 0x79, 0x73, 0x69, 0x63, 0x61, 0x6c, 0x44, 0x69, 0x73, 0x6b, 0x52, 0x0c, 0x70,
+	0x68, 0x79, 0x73, 0x69, 0x63, 0x61, 0x6c, 0x44, 0x69, 0x73, 0x6b, 0x22, 0x44, 0x0a, 0x0c, 0x56,
+	0x69, 0x72, 0x74, 0x75, 0x61, 0x6c, 0x44, 0x69, 0x73, 0x6b, 0x73, 0x12, 0x34, 0x0a, 0x0b, 0x76,
+	0x69, 0x72, 0x74, 0x75, 0x61, 0x6c, 0x44, 0x69, 0x73, 0x6b, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x12, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x56, 0x69, 0x72, 0x74, 0x75, 0x61, 0x6c,
+	0x44, 0x69, 0x73, 0x6b, 0x52, 0x0b, 0x76, 0x69, 0x72, 0x74, 0x75, 0x61, 0x6c, 0x44, 0x69, 0x73,
+	0x6b, 0x22, 0x38, 0x0a, 0x09, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x73, 0x12, 0x2b,
+	0x0a, 0x08, 0x66, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x0f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x46, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72,
+	0x65, 0x52, 0x08, 0x66, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x22, 0xf8, 0x01, 0x0a, 0x04,
+	0x4e, 0x6f, 0x64, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x49, 0x50, 0x4d, 0x49, 0x49, 0x50, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x49, 0x50, 0x4d, 0x49, 0x49, 0x50, 0x12, 0x22, 0x0a, 0x0c,
+	0x49, 0x50, 0x4d, 0x49, 0x55, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0c, 0x49, 0x50, 0x4d, 0x49, 0x55, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65,
+	0x12, 0x22, 0x0a, 0x0c, 0x49, 0x50, 0x4d, 0x49, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x49, 0x50, 0x4d, 0x49, 0x50, 0x61, 0x73, 0x73,
+	0x77, 0x6f, 0x72, 0x64, 0x12, 0x39, 0x0a, 0x0c, 0x76, 0x69, 0x72, 0x74, 0x75, 0x61, 0x6c, 0x44,
+	0x69, 0x73, 0x6b, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2e, 0x56, 0x69, 0x72, 0x74, 0x75, 0x61, 0x6c, 0x44, 0x69, 0x73, 0x6b, 0x73, 0x48,
+	0x00, 0x52, 0x0c, 0x76, 0x69, 0x72, 0x74, 0x75, 0x61, 0x6c, 0x44, 0x69, 0x73, 0x6b, 0x73, 0x12,
+	0x30, 0x0a, 0x09, 0x66, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65, 0x73, 0x18, 0x05, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x10, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x46, 0x69, 0x72, 0x6d, 0x77,
+	0x61, 0x72, 0x65, 0x73, 0x48, 0x00, 0x52, 0x09, 0x66, 0x69, 0x72, 0x6d, 0x77, 0x61, 0x72, 0x65,
+	0x73, 0x12, 0x18, 0x0a, 0x06, 0x69, 0x73, 0x6f, 0x55, 0x52, 0x4c, 0x18, 0x06, 0x20, 0x01, 0x28,
+	0x09, 0x48, 0x00, 0x52, 0x06, 0x69, 0x73, 0x6f, 0x55, 0x52, 0x4c, 0x42, 0x09, 0x0a, 0x07, 0x6d,
+	0x6f, 0x64, 0x75, 0x6c, 0x65, 0x73, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22,
+	0x20, 0x0a, 0x08, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76,
+	0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x32, 0x8f, 0x01, 0x0a, 0x03, 0x62, 0x6d, 0x68, 0x12, 0x27, 0x0a, 0x06, 0x44, 0x65, 0x70,
+	0x6c, 0x6f, 0x79, 0x12, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x45, 0x6d, 0x70, 0x74,
+	0x79, 0x1a, 0x0f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x2f, 0x0a, 0x0e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x46, 0x69, 0x72, 0x6d,
+	0x77, 0x61, 0x72, 0x65, 0x12, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x45, 0x6d, 0x70,
+	0x74, 0x79, 0x1a, 0x0f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x0d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x65,
+	0x52, 0x41, 0x49, 0x44, 0x12, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x45, 0x6d, 0x70,
+	0x74, 0x79, 0x1a, 0x0f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x32, 0x34, 0x0a, 0x06, 0x69, 0x73, 0x6f, 0x67, 0x65, 0x6e, 0x12, 0x2a, 0x0a,
+	0x09, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x53, 0x4f, 0x12, 0x0c, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x34, 0x0a, 0x07, 0x72, 0x65, 0x64,
+	0x66, 0x69, 0x73, 0x68, 0x12, 0x29, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x47, 0x55, 0x49, 0x49, 0x44,
+	0x12, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0f,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -140,19 +598,38 @@ func file_proto_redfish_proto_rawDescGZIP() []byte {
 	return file_proto_redfish_proto_rawDescData
 }
 
-var file_proto_redfish_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proto_redfish_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_proto_redfish_proto_goTypes = []interface{}{
-	(*Empty)(nil),    // 0: proto.Empty
-	(*Response)(nil), // 1: proto.Response
+	(*Firmware)(nil),     // 0: proto.Firmware
+	(*PhysicalDisk)(nil), // 1: proto.PhysicalDisk
+	(*VirtualDisk)(nil),  // 2: proto.VirtualDisk
+	(*VirtualDisks)(nil), // 3: proto.VirtualDisks
+	(*Firmwares)(nil),    // 4: proto.Firmwares
+	(*Node)(nil),         // 5: proto.Node
+	(*Empty)(nil),        // 6: proto.Empty
+	(*Response)(nil),     // 7: proto.Response
 }
 var file_proto_redfish_proto_depIdxs = []int32{
-	0, // 0: proto.redfish.GetGUIID:input_type -> proto.Empty
-	1, // 1: proto.redfish.GetGUIID:output_type -> proto.Response
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1,  // 0: proto.VirtualDisk.physicalDisk:type_name -> proto.PhysicalDisk
+	2,  // 1: proto.VirtualDisks.virtualDisk:type_name -> proto.VirtualDisk
+	0,  // 2: proto.Firmwares.firmware:type_name -> proto.Firmware
+	3,  // 3: proto.Node.virtualDisks:type_name -> proto.VirtualDisks
+	4,  // 4: proto.Node.firmwares:type_name -> proto.Firmwares
+	6,  // 5: proto.bmh.Deploy:input_type -> proto.Empty
+	6,  // 6: proto.bmh.UpdateFirmware:input_type -> proto.Empty
+	6,  // 7: proto.bmh.ConfigureRAID:input_type -> proto.Empty
+	6,  // 8: proto.isogen.CreateISO:input_type -> proto.Empty
+	6,  // 9: proto.redfish.GetGUIID:input_type -> proto.Empty
+	7,  // 10: proto.bmh.Deploy:output_type -> proto.Response
+	7,  // 11: proto.bmh.UpdateFirmware:output_type -> proto.Response
+	7,  // 12: proto.bmh.ConfigureRAID:output_type -> proto.Response
+	7,  // 13: proto.isogen.CreateISO:output_type -> proto.Response
+	7,  // 14: proto.redfish.GetGUIID:output_type -> proto.Response
+	10, // [10:15] is the sub-list for method output_type
+	5,  // [5:10] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_proto_redfish_proto_init() }
@@ -162,7 +639,7 @@ func file_proto_redfish_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_proto_redfish_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Empty); i {
+			switch v := v.(*Firmware); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -174,6 +651,78 @@ func file_proto_redfish_proto_init() {
 			}
 		}
 		file_proto_redfish_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PhysicalDisk); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_redfish_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*VirtualDisk); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_redfish_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*VirtualDisks); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_redfish_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Firmwares); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_redfish_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Node); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_redfish_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Empty); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_redfish_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Response); i {
 			case 0:
 				return &v.state
@@ -186,15 +735,20 @@ func file_proto_redfish_proto_init() {
 			}
 		}
 	}
+	file_proto_redfish_proto_msgTypes[5].OneofWrappers = []interface{}{
+		(*Node_VirtualDisks)(nil),
+		(*Node_Firmwares)(nil),
+		(*Node_IsoURL)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_redfish_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   8,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   3,
 		},
 		GoTypes:           file_proto_redfish_proto_goTypes,
 		DependencyIndexes: file_proto_redfish_proto_depIdxs,
@@ -213,6 +767,222 @@ var _ grpc.ClientConnInterface
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
+
+// BmhClient is the client API for Bmh service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type BmhClient interface {
+	Deploy(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Response, error)
+	UpdateFirmware(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Response, error)
+	ConfigureRAID(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Response, error)
+}
+
+type bmhClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewBmhClient(cc grpc.ClientConnInterface) BmhClient {
+	return &bmhClient{cc}
+}
+
+func (c *bmhClient) Deploy(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/proto.bmh/Deploy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bmhClient) UpdateFirmware(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/proto.bmh/UpdateFirmware", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bmhClient) ConfigureRAID(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/proto.bmh/ConfigureRAID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// BmhServer is the server API for Bmh service.
+type BmhServer interface {
+	Deploy(context.Context, *Empty) (*Response, error)
+	UpdateFirmware(context.Context, *Empty) (*Response, error)
+	ConfigureRAID(context.Context, *Empty) (*Response, error)
+}
+
+// UnimplementedBmhServer can be embedded to have forward compatible implementations.
+type UnimplementedBmhServer struct {
+}
+
+func (*UnimplementedBmhServer) Deploy(context.Context, *Empty) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Deploy not implemented")
+}
+func (*UnimplementedBmhServer) UpdateFirmware(context.Context, *Empty) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFirmware not implemented")
+}
+func (*UnimplementedBmhServer) ConfigureRAID(context.Context, *Empty) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfigureRAID not implemented")
+}
+
+func RegisterBmhServer(s *grpc.Server, srv BmhServer) {
+	s.RegisterService(&_Bmh_serviceDesc, srv)
+}
+
+func _Bmh_Deploy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BmhServer).Deploy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.bmh/Deploy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BmhServer).Deploy(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Bmh_UpdateFirmware_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BmhServer).UpdateFirmware(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.bmh/UpdateFirmware",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BmhServer).UpdateFirmware(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Bmh_ConfigureRAID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BmhServer).ConfigureRAID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.bmh/ConfigureRAID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BmhServer).ConfigureRAID(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Bmh_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.bmh",
+	HandlerType: (*BmhServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Deploy",
+			Handler:    _Bmh_Deploy_Handler,
+		},
+		{
+			MethodName: "UpdateFirmware",
+			Handler:    _Bmh_UpdateFirmware_Handler,
+		},
+		{
+			MethodName: "ConfigureRAID",
+			Handler:    _Bmh_ConfigureRAID_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/redfish.proto",
+}
+
+// IsogenClient is the client API for Isogen service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type IsogenClient interface {
+	CreateISO(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Response, error)
+}
+
+type isogenClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewIsogenClient(cc grpc.ClientConnInterface) IsogenClient {
+	return &isogenClient{cc}
+}
+
+func (c *isogenClient) CreateISO(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/proto.isogen/CreateISO", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// IsogenServer is the server API for Isogen service.
+type IsogenServer interface {
+	CreateISO(context.Context, *Empty) (*Response, error)
+}
+
+// UnimplementedIsogenServer can be embedded to have forward compatible implementations.
+type UnimplementedIsogenServer struct {
+}
+
+func (*UnimplementedIsogenServer) CreateISO(context.Context, *Empty) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateISO not implemented")
+}
+
+func RegisterIsogenServer(s *grpc.Server, srv IsogenServer) {
+	s.RegisterService(&_Isogen_serviceDesc, srv)
+}
+
+func _Isogen_CreateISO_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IsogenServer).CreateISO(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.isogen/CreateISO",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IsogenServer).CreateISO(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Isogen_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.isogen",
+	HandlerType: (*IsogenServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateISO",
+			Handler:    _Isogen_CreateISO_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/redfish.proto",
+}
 
 // RedfishClient is the client API for Redfish service.
 //

@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package proto;
 
 message Firmware {
@@ -16,7 +17,15 @@ message VirtualDisk {
     string diskname = 1;
     uint32 raidType =2; 
     string raidController = 3;
-    repeated PhysicalDisk = 4; 
+    repeated PhysicalDisk physicalDisk = 4; 
+}
+
+message VirtualDisks {
+      repeated VirtualDisk virtualDisk = 1;
+}
+
+message Firmwares {
+      repeated Firmware firmware = 1;
 }
 
 message Node {
@@ -24,8 +33,8 @@ message Node {
     string IPMIUsername = 2;
     string IPMIPassword = 3; 
     oneof modules  {
-      repeated VirtualDish virtualDisk = 4;
-      repeated Firmware firmware = 5;
+      VirtualDisks virtualDisks = 4;
+      Firmwares firmwares = 5;
       string isoURL = 6;
 }
   
