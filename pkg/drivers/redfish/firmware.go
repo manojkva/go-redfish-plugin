@@ -11,7 +11,7 @@ import (
 	version "github.com/hashicorp/go-version"
 )
 
-func (bmhnode *BMHNode) UpgradeFirmware(filepath string) bool {
+func (bmhnode *BMHNode) UpgradeEachFirmware(filepath string) bool {
 	redfishClient := getRedfishClient(bmhnode)
 	return redfishClient.UpgradeFirmware(filepath)
 }
@@ -56,13 +56,11 @@ func (bmhnode *BMHNode) CheckUpgradeAllowed(providedName string, providedVersion
 	return true
 }
 
-func (bmhnode *BMHNode) UpgradeFirmwareList() bool {
+func (bmhnode *BMHNode) UpdateFirmware() error {
 	//iterate through the list of firmwares
-	var res bool = false
 	firwares, err := node.GetFirmwares(bmhnode.NodeUUID.String())
 	if err != nil {
-		fmt.Printf("Failed to retreive firmwareURL")
-		return false
+		return fmt.Errorf("Failed to retreive firmwareURL. %v", err)
 	}
 	for _, firmware := range firwares {
 
@@ -72,24 +70,25 @@ func (bmhnode *BMHNode) UpgradeFirmwareList() bool {
 
 			tempdir, err := ioutil.TempDir("/tmp", "firmware")
 			if err != nil {
-				fmt.Printf("Failed to create temporary directory")
-				return false
+				return fmt.Errorf("Failed to create temporary directory. %v", err)
 			}
 			defer os.RemoveAll(tempdir)
 			firmwarefilepath := path.Join(tempdir, filename)
 			err = isogen.DownloadUrl(firmwarefilepath, firmware.URL)
 
 			if err != nil {
-				fmt.Printf("Failed to Download URL")
-				return false
+				return fmt.Errorf("Failed to Download URL, %v",err)
 			}
-			res = bmhnode.UpgradeFirmware(firmwarefilepath)
+			res := bmhnode.UpgradeEachFirmware(firmwarefilepath)
 			if res == false {
-				return false
+				return  fmt.Errorf("Failed to Upgrade Firmware")
 			}
+		} else{
+			return fmt.Errorf("Check for Upgrade version info failed for %v and version %v", firmware.Name, firmware.Version)
 		}
+
 	}
 
-	return res
+	return nil
 
 }

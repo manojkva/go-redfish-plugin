@@ -1,4 +1,4 @@
-package redfish
+package common
 
 import (
 	"context"
@@ -18,7 +18,10 @@ var PluginMap = map[string]plugin.Plugin{
 }
 
 type Redfish interface {
-	GetGUIID() ([]byte, error)
+	GetGUUID() ([]byte, error)
+	DeployISO() (error)
+	UpdateFirmware() (error)
+	ConfigureRAID()  (error)
 }
 
 type RedfishPlugin struct {

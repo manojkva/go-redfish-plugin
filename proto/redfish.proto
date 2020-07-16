@@ -47,16 +47,14 @@ message Response {
 
 }
 
-service bmh {
-  rpc Deploy(Empty) returns (Response);
-  rpc UpdateFirmware(Empty) returns (Response);
-  rpc ConfigureRAID(Empty) returns (Response);
+service redfish {
+  rpc DeployISO(Empty) returns (Empty);
+  rpc UpdateFirmware(Empty) returns (Empty);
+  rpc ConfigureRAID(Empty) returns (Empty);
+  rpc GetGUUID(Empty) returns (Response);
 
 }
 
 service isogen {
   rpc CreateISO(Empty) returns (Response);
-}
-service redfish {
-  rpc GetGUIID(Empty) returns (Response);
 }

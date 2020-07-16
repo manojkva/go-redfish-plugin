@@ -5,10 +5,10 @@ import (
 	"fmt"
 	client "github.com/manojkva/go-redfish-api-wrapper/pkg/redfishwrap/idrac"
 )
-
 type BMHNode struct {
-	*node.Node
+	       *node.Node
 }
+
 
 func getSupportedRAIDLevels() map[int]string {
 
@@ -50,14 +50,14 @@ func (bmhnode *BMHNode) CleanVirtualDIskIfEExists() bool {
 	return result
 }
 
-func (bmhnode *BMHNode) CreateVirtualDisks() bool {
+func (bmhnode *BMHNode) ConfigureRAID() error {
 
 	fmt.Printf("Inside Create Virtual Disk function\n")
 
 	var result bool
 
 	if !bmhnode.CleanVirtualDIskIfEExists() {
-		return false
+	        return  fmt.Errorf("Failed to delete existing Virtual Disk")
 	}
 
 	redfishClient := getRedfishClient(bmhnode)
@@ -65,8 +65,7 @@ func (bmhnode *BMHNode) CreateVirtualDisks() bool {
 
 	virtualdisklist, err := node.GetVirtualDisks(bmhnode.NodeUUID.String())
 	if err != nil {
-		fmt.Printf("Virtual disk list is empty with err %v\n", err)
-		return false
+		return fmt.Errorf("Virtual disk list is empty with err %v", err)
 	}
 
 	for _, vd := range virtualdisklist {
@@ -75,8 +74,7 @@ func (bmhnode *BMHNode) CreateVirtualDisks() bool {
 		physicaldisklist, err := node.GetPhysicalDisks(vd.ID)
 
 		if err != nil {
-			fmt.Printf("Failed to retrieve physical disks with error %v", err)
-			return false
+			return fmt.Errorf("Failed to retrieve physical disks with error %v", err)
 		}
 		for _, disk := range physicaldisklist {
 			diskIDs = append(diskIDs, disk.PhysicalDisk)
@@ -96,9 +94,9 @@ func (bmhnode *BMHNode) CreateVirtualDisks() bool {
 		}
 
 		if result != true {
-			return result
+			return  fmt.Errorf("Failed to retrieve Job Status for Job ID %v", jobId)
 		}
 
 	}
-	return result
+	return nil
 }

@@ -2,20 +2,15 @@ package main
 
 import (
 	"github.com/hashicorp/go-plugin"
-        "github.com/manojkva/go-redfish-plugin/redfish"
+        "github.com/manojkva/go-redfish-plugin/common"
+        "github.com/manojkva/go-redfish-plugin/pkg/drivers/redfish"
 )
 
-type Redfish struct{}
-
-func (Redfish) GetGUIID() ([]byte, error) {
-	// Write the logic of handing redfish wrapper code here
-	return []byte("test"), nil
-}
 
 func main() {
 	plugin.Serve(&plugin.ServeConfig{
-		HandshakeConfig: redfish.Handshake,
+		HandshakeConfig: common.Handshake,
 		Plugins: map[string]plugin.Plugin{
-			"redfish": &redfish.RedfishPlugin{Impl: &Redfish{}}},
+			"redfish": &common.RedfishPlugin{Impl: &redfish.BMHNode{}}},
 		GRPCServer: plugin.DefaultGRPCServer})
 }

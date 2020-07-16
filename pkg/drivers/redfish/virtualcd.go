@@ -1,8 +1,8 @@
 package redfish
 
 import (
-	"github.com/bm-metamorph/MetaMorph/pkg/logger"
 	"fmt"
+	"github.com/bm-metamorph/MetaMorph/pkg/logger"
 	client "github.com/manojkva/go-redfish-api-wrapper/pkg/redfishwrap/idrac"
 	"go.uber.org/zap"
 	"os"
@@ -15,6 +15,7 @@ var PowerStateChangeTimeoutSeconds int = 0
 func init() {
 	PowerStateChangeTimeoutSeconds, _ = strconv.Atoi(os.Getenv("METAMORPH_POWERCHANGE_TIMEOUT"))
 }
+
 
 func (bmhnode *BMHNode) GetVirtualMediaStatus() bool {
 	var result bool = false
@@ -111,6 +112,8 @@ func (bmhnode *BMHNode) EjectISO() bool {
 
 }
 
+
+
 func GetUUID(hostIP string, username string, password string) (string, bool) {
 	redfishClient := client.IdracRedfishClient{
 		Username: username,
@@ -124,6 +127,23 @@ func GetUUID(hostIP string, username string, password string) (string, bool) {
 	uuid, result := redfishClient.GetNodeUUID(redfishSystemID)
 	return uuid, result
 }
+
+func (bmhnode *BMHNode) GetGUUID()([]byte, error){
+	var err error
+	redfishClient := getRedfishClient(bmhnode)
+	redfishSystemID := redfishClient.GetSystemID()
+	if redfishSystemID == "" {
+		return []byte(""),fmt.Errorf("Failed to retrieve SystemID")
+	}
+	uuid,res :=  redfishClient.GetNodeUUID(redfishSystemID)
+	if res != true{
+	    err  = fmt.Errorf("Failed to retreive GUUID of Node")
+
+	}
+	return []byte(uuid), err
+}
+
+
 
 func (bmhnode *BMHNode) GetManagerID() string {
 	redfishClient := getRedfishClient(bmhnode)
@@ -139,8 +159,9 @@ func (bmhnode *BMHNode) GetRedfishVersion() string {
 	return redfishClient.GetRedfishVer()
 }
 
-func (bmhnode *BMHNode) DeployISO() bool {
+func (bmhnode *BMHNode) DeployISO() error {
 	logger.Log.Info("Entering DeplyISO for node", zap.String("Node Name", bmhnode.Name), zap.String("Node UUID", bmhnode.NodeUUID.String()))
+	var errorString string
 	var result bool
 	// Setup Raid
 
@@ -149,8 +170,9 @@ func (bmhnode *BMHNode) DeployISO() bool {
 		logger.Log.Info("Trying to Power On the node", zap.String("Node Name", bmhnode.Name))
 		result = bmhnode.PowerOn()
 		if result == false {
-			logger.Log.Error("Failed to power on Node", zap.String("Node Name", bmhnode.Name))
-			return result
+			errorString = fmt.Sprintf("Failed to power on Node %v", zap.String("Node Name", bmhnode.Name))
+			logger.Log.Error(errorString)
+			return fmt.Errorf("%v", errorString)
 		}
 		if PowerStateChangeTimeoutSeconds == 0 {
 			PowerStateChangeTimeoutSeconds = 300 // if environment variable is not set
@@ -160,11 +182,11 @@ func (bmhnode *BMHNode) DeployISO() bool {
 	}
 
 	if bmhnode.RAID_reset {
-		result = bmhnode.CreateVirtualDisks()
+		err := bmhnode.ConfigureRAID()
 
-		if result == false {
+		if err != nil {
 			logger.Log.Error("Failed to create virtual disk", zap.String("Node Name", bmhnode.Name))
-			return result
+			return fmt.Errorf("Failed to create virtual Disk %v", err)
 		}
 	} else {
 		logger.Log.Info("RAID Reset set to false. Skipping RAID Virtual Disk Creation", zap.String("Node Name", bmhnode.Name))
@@ -195,6 +217,21 @@ func (bmhnode *BMHNode) DeployISO() bool {
 		}
 	}
 
-	return result
+	if result != true {
+		return fmt.Errorf("Failed to deploy ISO")
+	}
+	return nil
+}
 
+func (bmhnode *BMHNode) SetRedfishIDs() {
+	if bmhnode.RedfishVersion == "" {
+		bmhnode.RedfishVersion = bmhnode.GetRedfishVersion()
+	}
+	if bmhnode.RedfishManagerID == "" {
+		bmhnode.RedfishManagerID = bmhnode.GetManagerID()
+	}
+	if bmhnode.RedfishSystemID == "" {
+
+		bmhnode.RedfishSystemID = bmhnode.GetSystemID()
+	}
 }

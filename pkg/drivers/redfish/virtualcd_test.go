@@ -37,12 +37,11 @@ func TestISOInstallation(t *testing.T) {
 }
 
 func TestISODeploy(t *testing.T){
-	var res bool
 	bmhnode := &BMHNode { node.CreateTestNode()}
 	bmhnode.ImageURL = "http://32.68.220.23:31180/4c4c4544-004a-5910-804d-c2c04f435032-ubuntu.iso"
 
-	res = bmhnode.DeployISO()
-	assert.Equal(t,res,true)
+	err := bmhnode.DeployISO()
+	assert.Equal(t,err,nil)
 
 
 }
@@ -72,5 +71,11 @@ func TestGetRedfishVersion(t *testing.T){
 	bmhnode := &BMHNode { node.CreateTestNode()}
 	rfvers := bmhnode.GetRedfishVersion()
 	assert.Equal(t,rfvers,"1.4.0")
+
+}
+func TestGetGUUID(t *testing.T){
+	bmhnode := &BMHNode { node.CreateTestNode()}
+	uuid := bmhnode.GetGUUID()
+	assert.Equal(t,uuid,"4c4c4544-004a-5910-804d-c2c04f435032")
 
 }
