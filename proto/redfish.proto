@@ -4,7 +4,7 @@ package proto;
 message Firmware {
     string name =1;
     string version = 2;
-    string url = 3
+    string url = 3;
 }
 
 message PhysicalDisk {
@@ -16,17 +16,17 @@ message VirtualDisk {
     string diskname = 1;
     uint32 raidType =2; 
     string raidController = 3;
-    repeated PhysicalDisk = 4 
+    repeated PhysicalDisk = 4; 
 }
 
 message Node {
     string IPMIIP = 1;
     string IPMIUsername = 2;
     string IPMIPassword = 3; 
-    Anyof {
-      virtualDisk repeated
-      Firmware repeated
-      string isoURL 
+    oneof modules  {
+      repeated VirtualDish virtualDisk = 4;
+      repeated Firmware firmware = 5;
+      string isoURL = 6;
 }
   
 }
@@ -39,9 +39,9 @@ message Response {
 }
 
 service bmh {
-  rpc Deploy(Empty) returns (Response)
-  rpc UpdateFirmware(Empty) returns (Response)
-  rpc ConfigureRAID(Empty) returns (Response)
+  rpc Deploy(Empty) returns (Response);
+  rpc UpdateFirmware(Empty) returns (Response);
+  rpc ConfigureRAID(Empty) returns (Response);
 
 }
 

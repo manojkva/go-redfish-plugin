@@ -1,8 +1,7 @@
 package redfish
 
 import (
-	//config "github.com/Metamorph/pkg/config"
-	"github.com/Metamorph/pkg/logger"
+	"github.com/bm-metamorph/MetaMorph/pkg/logger"
 	"fmt"
 	client "github.com/manojkva/go-redfish-api-wrapper/pkg/redfishwrap/idrac"
 	"go.uber.org/zap"

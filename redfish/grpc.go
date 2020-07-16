@@ -1,7 +1,7 @@
 package redfish
 
 import (
-	"github.com/manojkva/go-redfish-plugin/redfish/proto"
+	"github.com/manojkva/go-redfish-plugin/proto"
 	"golang.org/x/net/context"
 )
 

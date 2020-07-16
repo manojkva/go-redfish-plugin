@@ -3,7 +3,7 @@ package redfish
 import (
 	"context"
 	"github.com/hashicorp/go-plugin"
-	"github.com/manojkva/go-redfish-plugin/redfish/proto"
+	"github.com/manojkva/go-redfish-plugin/proto"
 	"google.golang.org/grpc"
 )
 

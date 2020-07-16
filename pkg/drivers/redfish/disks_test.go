@@ -3,7 +3,7 @@ package redfish
 import (
 	"testing"
 	"github.com/stretchr/testify/assert"
-	"github.com/Metamorph/pkg/db/models/node"
+	"github.com/bm-metamorph/MetaMorph/pkg/db/models/node"
 
 )
 

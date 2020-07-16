@@ -1,25 +1,28 @@
 package main
 
 import (
-	"github.com/Metamorph/pkg/db/models/node"
+	"github.com/bm-metamorph/MetaMorph/pkg/db/models/node"
 	"github.com/manojkva/go-redfish-plugin/pkg/drivers/redfish"
 	"fmt"
 //	"os"
 )
 
 func checkISOFuntionality(){
-        var res bool
+        //var res bool
 
 	bmhnode := &redfish.BMHNode{node.CreateTestNode()}
 	bmhnode.ImageURL = "http://test/xyz.iso"
 	bmhnode.RedfishVersion = bmhnode.GetRedfishVersion()
+	fmt.Println("%v", bmhnode.RedfishVersion )
 
 	fmt.Scanln()
 
 	bmhnode.RedfishManagerID = bmhnode.GetManagerID()
+	fmt.Println("%v", bmhnode.RedfishManagerID )
 	fmt.Scanln()
 
 	bmhnode.RedfishSystemID = bmhnode.GetSystemID()
+	fmt.Println("%v", bmhnode.RedfishSystemID )
 	fmt.Scanln()
 /*
 	fmt.Println("Insert ISO ")
@@ -42,7 +45,7 @@ func checkISOFuntionality(){
 	fmt.Scanln()
 	fmt.Println("Check Status of virtual media")
 	bmhnode.GetVirtualMediaStatus()
-*/
+
 	fmt.Scanln()
 	fmt.Println("Set Onetime Boot the server")
 	res = bmhnode.SetOneTimeBoot()
@@ -51,7 +54,7 @@ func checkISOFuntionality(){
 	}
 
 	fmt.Scanln()
-/*
+
 	fmt.Println("Reboot the server")
 	res = bmhnode.Reboot()
 	if !res {
@@ -78,5 +81,7 @@ func TestFirmwareUpdate(){
 // For Testing Purpose only !!!
 
 func main() {
-	TestFirmwareUpdate()
+        fmt.Println("Testing Redfish APIs")
+	///TestFirmwareUpdate()
+       checkISOFuntionality()
 }

@@ -14,9 +14,9 @@ import (
 	"path"
 	"strings"
 
-	config "github.com/Metamorph/pkg/config"
-	"github.com/Metamorph/pkg/db/models/node"
-	"github.com/Metamorph/pkg/logger"
+	config "github.com/bm-metamorph/MetaMorph/pkg/config"
+	"github.com/bm-metamorph/MetaMorph/pkg/db/models/node"
+	"github.com/bm-metamorph/MetaMorph/pkg/logger"
 	"go.uber.org/zap"
 )
 
