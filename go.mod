@@ -3,14 +3,12 @@ module github.com/manojkva/go-redfish-plugin
 go 1.13
 
 require (
-	github.com/Nordix/go-redfish/client v0.0.0-20191016124000-fd2ad07270c9 // indirect
 	github.com/bm-metamorph/MetaMorph v0.0.0
 	github.com/go-resty/resty/v2 v2.0.0
 	github.com/golang/protobuf v1.4.2
 	github.com/hashicorp/go-hclog v0.0.0-20180709165350-ff2cf002a8dd
 	github.com/hashicorp/go-plugin v1.3.0
 	github.com/hashicorp/go-version v1.2.1
-	github.com/manojkva/go-redfish v0.0.0-20200124181106-6ae3137cd5bf // indirect
 	github.com/manojkva/go-redfish-api-wrapper v1.0.6
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.4.0

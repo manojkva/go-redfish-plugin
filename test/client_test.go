@@ -21,7 +21,7 @@ func TestClientRequest(t *testing.T) {
 	client := plugin.NewClient(&plugin.ClientConfig{
 		HandshakeConfig:  common.Handshake,
 		Plugins:          common.PluginMap,
-		Cmd:              exec.Command("sh", "-c", "../go-redfish-plugin"),
+		Cmd:              exec.Command("sh", "-c", "../go-redfish-plugin 1900491a-ed8e-416d-a6d3-7b915d6f4554"),
 		AllowedProtocols: []plugin.Protocol{plugin.ProtocolGRPC},
 	        Logger: logger,})
 	defer client.Kill()

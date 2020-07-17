@@ -31,15 +31,19 @@ type GRPCServer struct {
 }
 
 func (m *GRPCServer) GetGUUID(ctx context.Context, req *proto.Empty) (*proto.Response, error) {
+	/* <TBD> Add check for required parameters and raise necessary errors if reqd*/
 	v, err := m.Impl.GetGUUID()
 	return &proto.Response{Value: v}, err
 }
 func (m *GRPCServer)  UpdateFirmware(ctx context.Context, req *proto.Empty) (*proto.Empty,error) {
+	/* <TBD> Add check for required parameters and raise necessary errors if reqd*/
 	 return nil,nil
 }
 func (m *GRPCServer)  ConfigureRAID(ctx context.Context, req *proto.Empty) (*proto.Empty,error) {
+	/* <TBD> Add check for required parameters and raise necessary errors if reqd*/
 	 return nil,nil
 }
 func (m *GRPCServer)  DeployISO(ctx context.Context, req *proto.Empty) (*proto.Empty,error) {
+	/* <TBD> Add check for required parameters and raise necessary errors if reqd*/
 	 return nil,nil
 }
